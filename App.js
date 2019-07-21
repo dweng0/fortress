@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Text, ActivityIndicator, View, StyleSheet}  from "react-native";
+import {ActivityIndicator, View}  from "react-native";
 import * as Font from 'expo-font';
-
+import { Router, Stack, Scene } from 'react-native-router-flux';
 import OutterWrapper from "./src/components/wrapper";
-import Header from './src/components/header';
 import Row from "./src/components/row";
-import Button from './src/components/button';
+import content from "./src/international";
 
-import content from './src/international';
-
-
-const styles = StyleSheet.create({
-    font: {
-      fontFamily: 'poppins',
-      fontSize: 32
-    }
-  })
+import Login from './src/pages/login';
+import Home from './src/pages/home';
 
 export default function App() {
 
@@ -39,14 +31,12 @@ export default function App() {
     if(fontLoaded) 
     {
         return (
-            <OutterWrapper >               
-                <Row><Header title="Village Surgery" description="something something"/></Row>
-                <Row/>
-                <Row>
-                    <Button title={content.bookAppointment}/>
-                    <Button title={content.showBookings} />
-                </Row>
-            </OutterWrapper>
+            <Router>
+                <Stack key="root">
+                    <Scene key="login" component={Login}/>
+                    <Scene key="home" component={Home}/>
+                </Stack>
+            </Router>
         );
     }
     else
