@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.View`
-	flex: 1;
+	flex:1;
 	background-color: white ;
-	justify-content: space-evenly;
+	justify-content: space-between;
     align-items: center;
     padding-top: 25px;
 `;

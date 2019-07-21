@@ -9,7 +9,15 @@ const Row = styled.View`
 
 
 const OutterWrapper = props => {
-    return<Row>{ props.children }</Row>
+    let styles = {
+        alignSelf: 'auto'
+    }
+
+    if(props.bottom)
+    {
+        styles.alignSelf = 'flexEnd'
+    }
+    return<Row styles={styles}>{ props.children }</Row>
 }
 
 export default OutterWrapper;

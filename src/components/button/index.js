@@ -1,20 +1,45 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import { TouchableOpacity, View, StyleSheet, Text} from 'react-native';
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin: 0 1em;
-  padding: 0.25em 1em;
+const styles = StyleSheet.create({
+    container: {
+      justifyContent: 'center',
+    },
+    button: {
+        marginTop:10,
+        paddingTop:7,
+        paddingBottom:7,
+        marginLeft:20,
+        marginRight:20,
+        backgroundColor:'#fff',
+        borderRadius:15,
+        borderWidth: 4,
+        borderColor: '#000',
+        alignItems: 'center',
+    },
+    font: {
+        fontFamily: 'poppins',
+        fontSize: 32
+    }
+  })
+  
+export const ButtonWrapper = ({onPress, ...props}) => {
+  //  console.assert(onPress, 'No on press event provided. This button wont do anything...');
+    return(
+        <View style={ styles.container }>
+            <TouchableOpacity style={ styles.button }>
+                {props.children}
+            </TouchableOpacity>
+        </View>
+    );
+}
 
-  ${props =>
-    props.primary &&
-    css`
-      background: palevioletred;
-      color: white;
-    `};
-`
+/**
+ * todo navigation
+ * @param {*} param0 
+ */
+const Button = ({ title }) => {
+    return <ButtonWrapper><Text style={styles.font}>{title}</Text></ButtonWrapper>
+}
 
 export default Button;
