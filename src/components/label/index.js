@@ -21,7 +21,7 @@ const Label = ({ size, position, style, ...props }) => {
     if (position) {
         styles.textAlign = position;
     }
-
+    console.log(`styles is ${styles.fontSize}`)
     return <Text styles={styles}>{props.children}</Text>
 }
 

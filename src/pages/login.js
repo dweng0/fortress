@@ -25,29 +25,29 @@ const commenceScan = async () => {
 export default function Login() {
     const [compatible, setCompatible] = useState(false);
     const [hasPrints, setHasPrints] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
     
     const deviceCompatible = async () => {
         let enrolled = await LocalAuthentication.isEnrolledAsync();
         let isCompatible = await LocalAuthentication.hasHardwareAsync();
-        console.log(`setting ${isCompatible}`)
         setHasPrints(isCompatible);
         setCompatible(enrolled);
     }
     
     const maybeShowFingerPrintScan = () => {
-        console.log(`has things ${compatible} ${hasPrints}`)
-        if (compatible && hasPrints) {
-            
+        
+        if (compatible || hasPrints) {            
             return (
-                <Row>
-                    <View style={styles.container}>
-                        <Touchable>
-                            <Image onPress={ () => commenceScan() } source={require('../../assets/images/finger.png')} style={{width: 50, height: 50}}/>
-                        </Touchable>
-                        
-                        <Label>{ loginContent.useFingerPrint }</Label>
-                    </View>
-                </Row>
+               <>
+                <Touchable onPress={ async () => {
+                    console.log('authenticating');
+                    let auth = await LocalAuthentication.authenticateAsync();
+                    setAuthenticated(auth.success);
+                    }}>
+                    <Image source={require('../../assets/images/finger.png')} style={{width: 50, height: 50}}/>
+                    </Touchable>                    
+                <Label>{ loginContent.useFingerPrint }</Label>
+            </>
             );
         }        
     }
@@ -58,18 +58,16 @@ export default function Login() {
 			<Row>
 				<Header title={loginContent.title}/>
 			</Row>
-           { maybeShowFingerPrintScan()}
+           <Row/>
            <Row>
                 <View style={styles.container}>
-                    <Touchable onPress={ () => {throw new Error('no yet implemented')}}>
-                        <Image source={require('../../assets/images/finger.png')} style={{width: 50, height: 50}}/>
-                    </Touchable>
-                    
-                    <Label>{ loginContent.useFingerPrint }</Label>
+                    { maybeShowFingerPrintScan()}
                 </View>
             </Row>
             <Row>
-                <Label>{ loginContent.usePasscode }</Label>
+                <View style={styles.container}>
+                    <Label size='large'>{ loginContent.usePasscode }</Label>
+                </View>               
             </Row>
 		</OutterWrapper>
 	);
