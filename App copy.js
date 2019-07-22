@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {ActivityIndicator, View, Text}  from "react-native";
+import {ActivityIndicator, View}  from "react-native";
 import * as Font from 'expo-font';
 import { Router, Stack, Scene } from 'react-native-router-flux';
 import OutterWrapper from "./src/components/wrapper";
 import Row from "./src/components/row";
+import content from "./src/international";
 
 import Login from './src/pages/login';
 import Home from './src/pages/home';
-import BookingType from './src/pages/bookingtype';
 
 export default function App() {
-
-	
 
     const [fontLoaded, setFontLoaded] = useState(false);
 
@@ -19,8 +17,7 @@ export default function App() {
         try {
             await Font.loadAsync({
                 'poppins': require('./assets/fonts/Poppins-SemiBold.ttf')
-			});
-		
+            });
             setFontLoaded(true);
         }
         catch(e) {
@@ -33,15 +30,11 @@ export default function App() {
 
     if(fontLoaded) 
     {
-		//move login to top when finished
         return (
             <Router>
                 <Stack key="root">
-				<Scene key="home" component={Home} hideNavBar={true}/>
-					<Scene key="login" component={Login} hideNavBar={true}/>
-				
-					<Scene key="bookingType" component={BookingType}/>
-					
+                    <Scene key="login" component={Login}/>
+                    <Scene key="home" component={Home}/>
                 </Stack>
             </Router>
         );
@@ -54,7 +47,7 @@ export default function App() {
                 <Row>
                     <View>
                         <ActivityIndicator size="large" color="#000" />
-                    </View>
+                    </View>                    
                 </Row>
             </OutterWrapper>
         );

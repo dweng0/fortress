@@ -1,9 +1,9 @@
 {
-  "packagerPort": 19001,
-  "packagerPid": 15048,
-  "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://4a-xkj.anonymous.fortress.exp.direct",
-  "packagerNgrokUrl": "https://packager.4a-xkj.anonymous.fortress.exp.direct",
-  "ngrokPid": 14568
+  "devToolsPort": 19002,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://pg-34h.anonymous.scruffy.exp.direct",
+  "packagerNgrokUrl": "https://packager.pg-34h.anonymous.scruffy.exp.direct",
+  "ngrokPid": 11188
 }

@@ -7,22 +7,23 @@ const fontSizes = {
     large: 32,
     huge: 46
 };
-let styles = {
-    fontFamily: "poppins",
-    fontSize: fontSizes.medium
-}
-const Label = ({ size, position, style, ...props }) => {
-    styles = {...styles, ... props}
+const Label = ({ size, position, style, color, ...props }) => {
 
+	let styles = style || {};
+	styles.fontFamily = "poppins";
     if (size && fontSizes[size]) {
         styles.fontSize = fontSizes[size];
     }
 
     if (position) {
         styles.textAlign = position;
-    }
-    console.log(`styles is ${styles.fontSize}`)
-    return <Text styles={styles}>{props.children}</Text>
+	}
+
+	if(color) {
+		styles.color = 'red'
+	}
+	
+    return <Text style={styles}>{props.children}</Text>
 }
 
 export default Label;

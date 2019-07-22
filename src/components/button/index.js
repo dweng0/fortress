@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
     }
   })
   
-export const ButtonWrapper = ({onPress, ...props}) => {
+export const ButtonWrapper = (props) => {
   //  console.assert(onPress, 'No on press event provided. This button wont do anything...');
     return(
         <View style={ styles.container }>
-            <TouchableOpacity style={ styles.button }>
+            <TouchableOpacity style={ styles.button } {...props}>
                 {props.children}
             </TouchableOpacity>
         </View>
@@ -38,8 +38,8 @@ export const ButtonWrapper = ({onPress, ...props}) => {
  * todo navigation
  * @param {*} param0 
  */
-const Button = ({ title }) => {
-    return <ButtonWrapper><Text style={styles.font}>{title}</Text></ButtonWrapper>
+const Button = ({ title, ...props }) => {
+    return <ButtonWrapper {...props}><Text style={styles.font}>{title}</Text></ButtonWrapper>
 }
 
 export default Button;

@@ -1,12 +1,22 @@
 export const homeContent = {
-    bookAppointment: 'Book appointment',
-    showBookings: 'Show bookings'
+    bookAppointment: 'Book',
+    showBookings: 'My Bookings'
 }
 
 export const loginContent = {
-    title: 'login',
-    usePasscode: 'use passcode',
-    useFingerPrint: 'use fingerprint to login'
+    title: `Alexander's`,
+    usePasscode: 'Login with passcode',
+	useFingerPrint: 'Login with fingerprint',
+	fingerPrintError: `That didn't work, please try again`,
+	fingerPrintErrorAlert: `That didn't work, try again?`,
+	failedToAuthenticateTitle: 'Failed to authenticate',
+	fingerScanPromptTitle: 'Fingerprint Scan',
+	fingerScanPromptMessage: 'Place your finger over the touch sensor.'
+}
+
+export const bookingTypeContent = {
+	emergency: 'Emergency',
+	scheduled: 'Scheduled'
 }
 
 export default {

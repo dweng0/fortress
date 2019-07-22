@@ -6,7 +6,7 @@ const Container = styled.View`
 	background-color: white ;
 	justify-content: space-between;
     align-items: center;
-    padding-top: 25px;
+    padding-top: 45px;
 `;
 
 
