@@ -8,6 +8,7 @@ import Row from "./src/components/row";
 import Login from './src/pages/login';
 import Home from './src/pages/home';
 import BookingType from './src/pages/bookingtype';
+import Emergency from './src/pages/emergency';
 
 export default function App() {
 
@@ -39,9 +40,8 @@ export default function App() {
                 <Stack key="root">
 				<Scene key="home" component={Home} hideNavBar={true}/>
 					<Scene key="login" component={Login} hideNavBar={true}/>
-				
-					<Scene key="bookingType" component={BookingType}/>
-					
+					<Scene key="bookingType" component={Emergency}/>
+					<Scene key="emergency" component={BookingType}/>
                 </Stack>
             </Router>
         );

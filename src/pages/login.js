@@ -114,7 +114,7 @@ export default function Login() {
           
            <Row>
                 <View style={styles.container}>
-					{ maybeShowFingerPrintScan()}					
+					{ maybeShowFingerPrintScan()}
 					<ShakingText>
 						{errorMessage }
 					</ShakingText>

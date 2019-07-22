@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null,
+  "packagerPort": 19001,
+  "packagerPid": 8096,
   "expoServerNgrokUrl": "https://pg-34h.anonymous.scruffy.exp.direct",
   "packagerNgrokUrl": "https://packager.pg-34h.anonymous.scruffy.exp.direct",
-  "ngrokPid": 11188
+  "ngrokPid": 19608
 }

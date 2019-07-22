@@ -4,7 +4,7 @@ import OutterWrapper from '../components/wrapper';
 import Header from '../components/header';
 import Row from '../components/row';
 import Button from '../components/button';
-
+import Label from '../components/label';
 import { Actions } from 'react-native-router-flux';
 import { homeContent } from '../international';
 
@@ -19,7 +19,7 @@ export default function Home() {
 			</Row>
 			<Row>
 			<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-			   <Image source={require('../../assets/images/icons/finger.png')} style={{width: 50, height: 50}}/>
+			   <Image source={require('../../assets/images/icons/fortressassets.png')} style={{width: 100, height: 100}}/>
 			</View>
 			</Row>
 			<Row />

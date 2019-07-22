@@ -4,11 +4,8 @@ import OutterWrapper from '../components/wrapper';
 import Header from '../components/header';
 import Row from '../components/row';
 import Button from '../components/button';
-import { Ionicons } from '@expo/vector-icons';
-
-import { bookingTypeContent } from '../international';
+import * as Animatable from 'react-native-animatable';
 import Label from '../components/label';
-import { Actions } from 'react-native-router-flux';
 
 export default function Type() {
 	return (
@@ -18,15 +15,17 @@ export default function Type() {
 			</Row>
 			<Row>
 			<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-			<Image source={require('../../assets/images/icons/206-first-aid-kit.png')} style={{width: 100, height:100}} />
+			<Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center' }}>
+			<Image source={require('../../assets/images/icons/heart.png')} style={{width: 100, height:100}} />
+			</Animatable.Text>
+			
 			</View>
 			</Row>
 			<Row>
 				<View style={{alignItems: 'center'}}>
-					<Label>Booking type</Label>
+					<Label>Searching for next available appointment...</Label>
 				</View>
-				<Button onPress={() => {Actions.emergency() }} title={bookingTypeContent.emergency} />
-				<Button title={bookingTypeContent.scheduled} />
+				<Button title="Cancel" />
 			</Row>
 		</OutterWrapper>
 	);
