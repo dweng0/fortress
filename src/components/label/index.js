@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 
 const fontSizes = {
     small: 14,
+    mediumSmall: 18,
     medium: 24,
     large: 32,
     huge: 46

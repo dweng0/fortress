@@ -26,7 +26,7 @@ export default function Home() {
 					}}
 				>
 					<Image
-						source={require("../../assets/images/icons/206-first-aid-kit.png")}
+						source={require("../../assets/images/icons/doctor.png")}
 						style={{ width: 100, height: 100 }}
 					/>
 				</Animatable.View>

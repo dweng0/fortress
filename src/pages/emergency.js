@@ -40,7 +40,7 @@ export default function Type() {
 				</View>
 				<Button
 					onPress={() => {
-						Actions.home();
+						Actions.bookingType();
 					}}
 					title="Cancel"
 				/>

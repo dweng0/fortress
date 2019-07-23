@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Image } from "react-native";
+import { View, Image } from "react-native";
 import OutterWrapper from "../components/wrapper";
 import Header from "../components/header";
 import Row from "../components/row";
 import Button from "../components/button";
 import * as Animatable from "react-native-animatable";
-import List from '../components/list';
+import Label from "../components/label";
+import Calendar from '../components/calendar';
 import { Actions } from "react-native-router-flux";
 
 export default function Type() {
@@ -14,33 +15,24 @@ export default function Type() {
 		<OutterWrapper>
 			<Row>
 				<Header
-					title="Schedule"
-					description="Your next appointments"
+					title="Appointments"
+					description="Pick from available slots"
 				/>
 			</Row>
-			<Row>
-				<Animatable.View
-					animation="fadeInDown"
-					iterationCount={1}
-					style={{
-						justifyContent: "center",
-						alignItems: "center",
-						textAlign: "center"
-					}}
-				>
-					<Image
-						source={require("../../assets/images/icons/184-clipboard.png")}
-						style={{ width: 100, height: 100 }}
-					/>
-				</Animatable.View>
-			</Row>
             <Row>
-                    <List/>
+                <Calendar/>
             </Row>
 			<Row>
+				<View style={{ alignItems: "center" }}>
+					<Label>Available slots up to 6 weeks in advance</Label>
+				</View>
+                <Button onPress={() => {
+						console.log('non emergency booking selected')
+					}}
+					title="Book"/>
 				<Button
 					onPress={() => {
-						Actions.home();
+						Actions.bookingType();
 					}}
 					title="Cancel"
 				/>
