@@ -9,6 +9,7 @@ import Login from './src/pages/login';
 import Home from './src/pages/home';
 import BookingType from './src/pages/bookingtype';
 import Emergency from './src/pages/emergency';
+import Schedule from './src/pages/schedule';
 
 export default function App() {
 
@@ -42,6 +43,7 @@ export default function App() {
 					<Scene key="login" component={Login} hideNavBar={true}/>
 					<Scene key="bookingType" component={Emergency}/>
 					<Scene key="emergency" component={BookingType}/>
+                    <Scene key="schedule" component={Schedule}/>
                 </Stack>
             </Router>
         );

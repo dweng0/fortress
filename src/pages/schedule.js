@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image } from "react-native";
+import { Text, Image } from "react-native";
 import OutterWrapper from "../components/wrapper";
 import Header from "../components/header";
 import Row from "../components/row";
@@ -14,14 +14,14 @@ export default function Type() {
 		<OutterWrapper>
 			<Row>
 				<Header
-					title="Appointments"
-					description="Finding next available slot"
+					title="Schedule"
+					description="Your three next appointments"
 				/>
 			</Row>
 			<Row>
 				<Animatable.View
-					animation="bounce"
-					iterationCount="infinite"
+					animation="fadeInDown"
+					iterationCount={1}
 					style={{
 						justifyContent: "center",
 						alignItems: "center",
@@ -29,15 +29,15 @@ export default function Type() {
 					}}
 				>
 					<Image
-						source={require("../../assets/images/icons/heart.png")}
+						source={require("../../assets/images/icons/184-clipboard.png")}
 						style={{ width: 100, height: 100 }}
 					/>
 				</Animatable.View>
 			</Row>
+            <Row>
+                    <Text>Test</Text>
+            </Row>
 			<Row>
-				<View style={{ alignItems: "center" }}>
-					<Label>Searching for next available appointment...</Label>
-				</View>
 				<Button
 					onPress={() => {
 						Actions.home();

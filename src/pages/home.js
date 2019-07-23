@@ -1,37 +1,49 @@
-import React from 'react';
-import { View, Image } from 'react-native';
-import OutterWrapper from '../components/wrapper';
-import Header from '../components/header';
-import Row from '../components/row';
-import Button from '../components/button';
-import Label from '../components/label';
-import { Actions } from 'react-native-router-flux';
-import { homeContent } from '../international';
+import React from "react";
+import { Image } from "react-native";
+import * as Animatable from "react-native-animatable";
+import OutterWrapper from "../components/wrapper";
+import Header from "../components/header";
+import Row from "../components/row";
+import Button from "../components/button";
+import { Actions } from "react-native-router-flux";
+import { homeContent } from "../international";
 
 export default function Home() {
 	return (
 		<OutterWrapper>
 			<Row>
-				<Header
-					title="Village Surgery"
-					description="something something"
-				/>
+				<Header title="Village Surgery" description="something something" />
 			</Row>
 			<Row>
-			<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-			   <Image source={require('../../assets/images/icons/fortressassets.png')} style={{width: 100, height: 100}}/>
-			</View>
+				<Animatable.View
+					animation="fadeInDown"
+                    iterationCount={1}
+                    delay={200}
+					style={{
+						justifyContent: "center",
+						alignItems: "center",
+						textAlign: "center"
+					}}
+				>
+					<Image
+						source={require("../../assets/images/icons/doctor.png")}
+						style={{ width: 100, height: 100 }}
+					/>
+				</Animatable.View>
 			</Row>
 			<Row />
 			<Row>
 				<Button
 					onPress={() => {
-						console.log('test');
 						Actions.bookingType();
 					}}
 					title={homeContent.bookAppointment}
 				/>
-				<Button title={homeContent.showBookings} />
+				<Button onPress={
+                    () => {
+                        Actions.schedule();
+                    }
+                } title={homeContent.showBookings} />
 			</Row>
 		</OutterWrapper>
 	);
