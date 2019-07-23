@@ -4,7 +4,6 @@ import OutterWrapper from "../components/wrapper";
 import Header from "../components/header";
 import Row from "../components/row";
 import Button from "../components/button";
-import * as Animatable from "react-native-animatable";
 import Label from "../components/label";
 import Calendar from '../components/calendar';
 import { Actions } from "react-native-router-flux";

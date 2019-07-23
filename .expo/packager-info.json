@@ -1,8 +1,9 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 7008,
-  "expoServerNgrokUrl": "https://pg-34h.anonymous.fortress.exp.direct",
-  "packagerNgrokUrl": "https://packager.pg-34h.anonymous.fortress.exp.direct",
-  "ngrokPid": 11560
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://pg-34h.dwengo.fortress.exp.direct",
+  "packagerNgrokUrl": "https://packager.pg-34h.dwengo.fortress.exp.direct",
+  "ngrokPid": 11488,
+  "devToolsPort": 19002
 }

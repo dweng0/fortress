@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet, View, Alert, Platform } from "react-native";
+import { StyleSheet, View, Alert, Platform } from "react-native";
 import * as LocalAuthentication from 'expo-local-authentication';
 import ShakingText from 'react-native-shaking-text';
 
@@ -7,10 +7,11 @@ import Label from '../components/label';
 import OutterWrapper from "../components/wrapper";
 import Header from "../components/header";
 import Row from "../components/row";
-import Touchable from '../components/touchable'
+import Button from "../components/button";
 
 import { loginContent } from "../international";
 import { Actions } from "react-native-router-flux";
+import Touchable from "../components/touchable";
 
 const styles = StyleSheet.create({
     container: {
@@ -23,7 +24,9 @@ export default function Login() {
     const [compatible, setCompatible] = useState(false);
     const [hasPrints, setHasPrints] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false);
-	const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [scannerButton, setScannerButtonPressed] = useState(false);
+    const [usePasscode, setUsePasscode] = useState(false);
     
     const deviceCompatible = async () => {
         let enrolled = await LocalAuthentication.isEnrolledAsync();
@@ -96,12 +99,10 @@ export default function Login() {
     const maybeShowFingerPrintScan = () => {        
         if (compatible || hasPrints) {
             return (
-               <>
-                <Touchable  onPress={() => checkForBiometrics()}>
-                    <Image source={require('../../assets/images/icons/finger.png')} style={{width: 50, height: 50}}/>
-				</Touchable>
-                <Label>{ loginContent.useFingerPrint }</Label>
-            </>
+                
+                <Button
+                onPress={() => { setScannerButtonPressed(true); checkForBiometrics();}}
+                title={loginContent.useFingerPrint}/>
             );
         }        
     }
@@ -113,18 +114,22 @@ export default function Login() {
 			</Row>
           
            <Row>
+                <View style={styles.container}>                   
+                    { maybeShowFingerPrintScan()}
+                </View>
+            </Row>
+			<Row>
                 <View style={styles.container}>
-					{ maybeShowFingerPrintScan()}
+                    {(scannerButton) ? <Label> { loginContent.fingerScanPromptMessage }</Label> : null}
 					<ShakingText>
 						{errorMessage }
 					</ShakingText>
-                </View>
+                </View>          
             </Row>
-			<Row/>
             <Row>
-                <View style={styles.container}>
-                    <Label >{ loginContent.usePasscode }</Label>
-                </View>               
+                <Touchable onPress={() => { Actions.passcodeLogin() }} style={styles.container}>
+                    <Label position="center">{ loginContent.usePasscode }</Label>
+                </Touchable>               
             </Row>
 		</OutterWrapper>
 	);
