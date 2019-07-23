@@ -5,7 +5,7 @@ import Header from "../components/header";
 import Row from "../components/row";
 import Button from "../components/button";
 import * as Animatable from "react-native-animatable";
-import Label from "../components/label";
+import List from '../components/list';
 import { Actions } from "react-native-router-flux";
 
 export default function Type() {
@@ -35,7 +35,7 @@ export default function Type() {
 				</Animatable.View>
 			</Row>
             <Row>
-                    <Text>Test</Text>
+                    <List/>
             </Row>
 			<Row>
 				<Button

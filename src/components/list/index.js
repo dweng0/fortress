@@ -1,5 +1,6 @@
 import React from 'react';
-import { SwipeListView } from 'react-native-swipe-list-view';
+import { Text } from 'react-native';
+import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 import moment from 'moment';
 const getRandomInt = max => {
     return Math.floor(Math.random() * Math.floor(max));
@@ -8,7 +9,7 @@ const getRandomInt = max => {
 const appointmentsMock = [
     {
         doctor: 'Patel',
-        date:  moment().add(getRandomInt(5), 'day')
+        date:  moment().add(getRandomInt(5), 'day').toISOString()
     }
 ]
 const renderItem = data => {return(
@@ -31,13 +32,50 @@ const renderHiddenItem = (data, secId, rowId, rowMap) => (
       </TouchableOpacity>
     </View>
   )
+
+  const dataSource = [
+    {
+        name: 'Andy',
+        age: 12,
+        disableRightSwipe: true,
+    },
+    {
+        name: 'Betty',
+        age: 11,
+        leftOpenValue: 150,
+    },
+    {
+        name: 'Carl',
+        age: 11,
+    },
+];
 const ListContainer = ({data, ...props}) => {
     return (
-        <SwipeListView
-            data={data}
-            renderItem={ () => renderItem(data) }
-            renderHiddenItem={ () => renderHiddenItem(data) }
-            rightOpenValue={-75}
-        />
+<>
+<Text>{dataSource[0].name}</Text>
+<SwipeListView
+    dataSource={dataSource}
+    renderItem={ (rowData, rowMap) => (
+        <SwipeRow
+            disableRightSwipe={parseInt(rowId) % 2 !== 0}
+            disableLeftSwipe={parseInt(rowId) % 2 === 0}
+            leftOpenValue={20 + parseInt(rowId) * 5}
+            rightOpenValue={-150}
+        >
+            {console.log('test')}
+            <View style={styles.rowBack}>
+                <Text>Left Hidden</Text>
+                <Text>Right Hidden</Text>
+            </View>
+            <View style={styles.rowFront}>
+                <Text>{data.item.name} | {data.item.key}</Text>
+            </View>
+        </SwipeRow>
+    )}
+/>
+</>
+
+
     )
 }
+export default ListContainer
