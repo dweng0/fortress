@@ -1,0 +1,4 @@
+tasks:
+- init: npm install
+- init: npm install -g expo-cli
+- command: expo start --host tunnel

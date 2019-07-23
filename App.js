@@ -14,7 +14,7 @@ import Schedule from './src/pages/schedule';
 
 export default function App() {
 
-	
+
 
     const [fontLoaded, setFontLoaded] = useState(false);
 
@@ -23,25 +23,25 @@ export default function App() {
             await Font.loadAsync({
                 'poppins': require('./assets/fonts/Poppins-SemiBold.ttf')
 			});
-		
+
             setFontLoaded(true);
         }
         catch(e) {
             console.log('failed to load custom font... ')
-        }       
-        
+        }
+
     }
     loadFonts();
     }, []);
 
-    if(fontLoaded) 
+    if(fontLoaded)
     {
 		//move login to top when finished
         return (
             <Router>
                 <Stack key="root">
-				<Scene key="home" component={Home} hideNavBar={true}/>
-					<Scene key="login" component={Login} hideNavBar={true}/>
+                	<Scene key="login" component={Login} hideNavBar={true}/>
+				    <Scene key="home" component={Home} hideNavBar={true}/>
 					<Scene  hideNavBar={true} key="bookingType" component={BookingType}/>
 					<Scene  hideNavBar={true} key="emergency" component={Emergency}/>
                     <Scene  hideNavBar={true} key="nonemergency" component={NonEmergency}/>
@@ -63,5 +63,5 @@ export default function App() {
             </OutterWrapper>
         );
     }
-	
+
 }
