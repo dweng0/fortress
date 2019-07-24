@@ -1,39 +1,25 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Pinny = ({ value, pinSetIndicator, pinUnsetIndicator,  ...props }) => {
-  console.log('here');
   let pin = value || '';
-
   if (!props.pinLength) {
     throw new Error('Pin lengh is required');
   }
-
+  
   if (pin.split("").length > props.pinLength) {
-     pin = pin.slice(0, props.pinLength);
+    pin = pin.slice(0, props.pinLength);
   }
-
-  /**
-   *  Use user defined input (can be another react element)
-   */
-  const pinSet = () => {
-    return <Text>•</Text>;
-  };
-  const pinUnset = () => {
-    return <Text>_</Text>;
-  };
-  const divider = `(100% / ${props.pinLength})`;
 
   /**
    * renders the set/unset elements
    */
   const unSetPinView = () => {
-    return <Text>_</Text>;
+    return <Text style={sheet.textStyles} >_</Text>;
   };
 
   const setPinView = pinNumber => {
-    console.log(`hiding ${pinNumber}`);
-    return <Text>•</Text>
+    return <Text style={sheet.textStyles}>•</Text>
   };
 
   /**
@@ -41,10 +27,11 @@ const Pinny = ({ value, pinSetIndicator, pinUnsetIndicator,  ...props }) => {
    */
   const getPins = () => {
     const pinAsArray = pin.split('');
-    let content = [];
-    let styling = sheet.numberBox;
-
-    styling.width = `calc${divider}`;
+    const boxStyling = sheet.numberBox;
+    const percentageWidth = 100 / props.pinLength;
+    let content = [];    
+    let styling = { ...{width: `${percentageWidth}%`}, ...boxStyling}
+    styling.width = `${percentageWidth}%`;
 
     for (let i = 0; i < props.pinLength; i++) {
       const nPin = pinAsArray[i] || null;
@@ -69,12 +56,16 @@ const sheet = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textStyles: {
+      fontSize:24
+  },
   numberBox: {
-    fontSize: 24,
     paddingTop: '8.5%',
     height: '100%',
-    width: '25%',
     textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center'
+
   },
 });
 export default Pinny;

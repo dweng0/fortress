@@ -26,7 +26,6 @@ export default function Login() {
 	const [authenticated, setAuthenticated] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [scannerButton, setScannerButtonPressed] = useState(false);
-    const [usePasscode, setUsePasscode] = useState(false);
     
     const deviceCompatible = async () => {
         let enrolled = await LocalAuthentication.isEnrolledAsync();

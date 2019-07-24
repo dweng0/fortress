@@ -7,7 +7,7 @@ const NumberRow = ({ numbers, ...props }) => {
 	}
 
 	const getNumber = (number, index) => {
-		return <NumberColumn numberInput={number} {...props} />;
+		return <NumberColumn key={index} numberInput={number} {...props} />;
 	};
 	let numberContent = [];
 	numbers.forEach((num, i) => numberContent.push(getNumber(num, i)));
@@ -101,7 +101,7 @@ const sheet = StyleSheet.create({
 	},
 	container: {
 		flex: 3,
-		justifyContent: 'space-between'
+        justifyContent: 'space-between'       
 	}
 });
 export default NumberPad;
