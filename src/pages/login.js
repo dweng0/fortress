@@ -128,7 +128,7 @@ export default function Login() {
             <Row>
                 <Touchable onPress={() => { Actions.passcodeLogin() }} style={styles.container}>
                     <Label position="center">{ loginContent.usePasscode }</Label>
-                </Touchable>               
+                </Touchable>           
             </Row>
 		</OutterWrapper>
 	);
