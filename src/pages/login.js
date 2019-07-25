@@ -26,34 +26,26 @@ export default function Login() {
 	const [authenticated, setAuthenticated] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [scannerButton, setScannerButtonPressed] = useState(false);
+
+    useEffect(() => {
+        console.log('scan button? ', scannerButton)
+        if (scannerButton === true)  {
+           	scanBiometrics();
+        }
+     }, [scannerButton]);
     
     const deviceCompatible = async () => {
         let enrolled = await LocalAuthentication.isEnrolledAsync();
         let isCompatible = await LocalAuthentication.hasHardwareAsync();
         setHasPrints(isCompatible);
         setCompatible(enrolled);
-
-        if (scannerButton) {
-            scanBiometrics();
-        }
 	}
-
-	const showAndroidAlert = () => {
-		Alert.alert(
-			loginContent.fingerScanPromptTitle,
-			 loginContent.fingerScanPromptMessage,
-		  [
-			{ text: "OK", onPress: () => {} }
-		  ]
-		);
-		scanBiometrics();
-	};
 	
 	const scanBiometrics = async () => {
+        console.log('scan biometrics activated...')
 		let result = await LocalAuthentication.authenticateAsync('Biometric Scan.');
 		console.log(result);
 		if (result.success) {
-            setScannerButtonPressed(false);
 			setAuthenticated(result.success);
 		  } else if (result.error && result.error !== 'user_cancel') {
 			Alert.alert(
@@ -71,14 +63,20 @@ export default function Login() {
 			setErrorMessage(loginContent.fingerPrintError);
 		  }
 		setAuthenticated(result.success);
-	};
+	}; 
 
 	useEffect(() => {
+        console.log('authenticated', authenticated);
 		if (authenticated) 
 		{
 			Actions.home();
 		}
 		console.log(`authenticated? ${authenticated}`);
+        return () => {
+            console.log('clean up')
+            setAuthenticated(false); 
+            setScannerButtonPressed(false);
+        }
 	}, [authenticated])
     
     const maybeShowFingerPrintScan = () => {        
@@ -86,11 +84,12 @@ export default function Login() {
             return (
                 
                 <Button
-                onPress={() => { setScannerButtonPressed(true); scanBiometrics();}}
+                onPress={() => { setScannerButtonPressed(true);}}
                 title={loginContent.useFingerPrint}/>
             );
-        }        
+        }
     }
+
 	deviceCompatible();
 	return (
 		<OutterWrapper>
