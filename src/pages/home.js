@@ -12,7 +12,7 @@ export default function Home() {
 	return (
 		<OutterWrapper>
 			<Row>
-				<Header title="Village Surgery" description="something something" />
+				<Header title="Village Surgery" description="currently closed" />
 			</Row>
 			<Row>
 				<Animatable.View

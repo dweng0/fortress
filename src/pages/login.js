@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Alert, Platform } from "react-native";
+import { StyleSheet, View, Alert, Platform, Image } from "react-native";
 import * as LocalAuthentication from 'expo-local-authentication';
 import ShakingText from 'react-native-shaking-text';
-
+import * as Animatable from "react-native-animatable";
 import Label from '../components/label';
 import OutterWrapper from "../components/wrapper";
 import Header from "../components/header";
@@ -96,6 +96,23 @@ export default function Login() {
 			<Row>
 				<Header title={loginContent.title}/>
 			</Row>
+            <Row>
+                <Animatable.View
+                    animation="fadeInDown"
+                    iterationCount={1}
+                    delay={200}
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        textAlign: "center"
+                    }}
+                >
+                <Image
+                    source={require("../../assets/images/icons/cardiogram.png")}
+                    style={{ width: 100, height: 100 }}
+                />
+				</Animatable.View>
+            </Row>
 
            <Row>
                 <View style={styles.container}>
