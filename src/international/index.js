@@ -12,12 +12,20 @@ export const loginContent = {
 	failedToAuthenticateTitle: 'Failed to authenticate',
 	fingerScanPromptTitle: 'Fingerprint Scan',
 	fingerScanPromptMessage: 'Place your finger over the touch sensor.',
-    loginOptions: 'Choose how you want to login'
+    loginOptions: 'Choose how you want to login',
+    register: 'Register'
+}
+
+export const register = {
+    title: 'Register',
+    smallDescription: 'We are glad you want to register with us. If your GP is signed up to the scheme then you will have recieved a registration code, please enter this now.',
+    label: 'Please enter your registration code',
+    submit: 'submit'
 }
 
 export const passcodeLogin = {
     title: `Passcode`,
-    
+
 }
 
 export const bookingTypeContent = {

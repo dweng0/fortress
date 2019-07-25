@@ -12,7 +12,7 @@ export default function Type() {
     const [queryStatus, setQueryStatus] = useState('searching'); //found
 	return (
 		<OutterWrapper>
-			<Row> <Header title="Appointments" description="Finding closest booking" /> </Row>
+			<Row><Header title="Appointments" description="Finding closest booking" /></Row>
 			<Row>
 				<Animatable.View
 					animation="pulse"
@@ -31,7 +31,7 @@ export default function Type() {
 			</Row>
 			<Row>
 				<View style={{ alignItems: "center" }}>
-					<Label>Searching for next available appointment...</Label>
+					<Label size="large">Searching...</Label>
 				</View>
 				<Button
 					onPress={() => {
@@ -39,7 +39,7 @@ export default function Type() {
 					}}
 					title="Cancel"
 				/>
-             
+
 			</Row>
 		</OutterWrapper>
 	);

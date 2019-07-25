@@ -5,7 +5,8 @@ import { Actions } from "react-native-router-flux";
 
 const styles = StyleSheet.create({
 	container: {
-		justifyContent: "center"
+		justifyContent: "center",
+        backgroundColor:"white"
 	},
 	navbar: {
 		marginTop: 10,
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
 		paddingBottom: 4,
 		marginLeft: 20,
 		marginRight: 20,
-		alignItems: "flex-end"
+		alignItems: "flex-end",
+        backgroundColor:"white"
 	}
 });
 
@@ -25,7 +27,7 @@ const NavBar = props => {
                 <Image source={require('../../../assets/images/icons/115-home.png')} style={{width: 32, height: 32}}/>
             </Touchable>
             </View>
-			
+
 		</View>
 	);
 };

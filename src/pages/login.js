@@ -33,14 +33,14 @@ export default function Login() {
            	scanBiometrics();
         }
      }, [scannerButton]);
-    
+
     const deviceCompatible = async () => {
         let enrolled = await LocalAuthentication.isEnrolledAsync();
         let isCompatible = await LocalAuthentication.hasHardwareAsync();
         setHasPrints(isCompatible);
         setCompatible(enrolled);
 	}
-	
+
 	const scanBiometrics = async () => {
         console.log('scan biometrics activated...')
 		let result = await LocalAuthentication.authenticateAsync('Biometric Scan.');
@@ -63,26 +63,26 @@ export default function Login() {
 			setErrorMessage(loginContent.fingerPrintError);
 		  }
 		setAuthenticated(result.success);
-	}; 
+	};
 
 	useEffect(() => {
         console.log('authenticated', authenticated);
-		if (authenticated) 
+		if (authenticated)
 		{
 			Actions.home();
 		}
 		console.log(`authenticated? ${authenticated}`);
         return () => {
             console.log('clean up')
-            setAuthenticated(false); 
+            setAuthenticated(false);
             setScannerButtonPressed(false);
         }
 	}, [authenticated])
-    
-    const maybeShowFingerPrintScan = () => {        
+
+    const maybeShowFingerPrintScan = () => {
         if (compatible || hasPrints) {
             return (
-                
+
                 <Button
                 onPress={() => { setScannerButtonPressed(true);}}
                 title={loginContent.useFingerPrint}/>
@@ -96,31 +96,24 @@ export default function Login() {
 			<Row>
 				<Header title={loginContent.title}/>
 			</Row>
-            
+
            <Row>
-                <View style={styles.container}>                   
-                    { maybeShowFingerPrintScan()}
+                <View style={styles.container}>
+                    <Label position="center">{ loginContent.loginOptions }</Label>
                      {(scannerButton) ? <Label> { loginContent.fingerScanPromptMessage }</Label> : null}
 					<ShakingText>
 						{errorMessage }
 					</ShakingText>
-<<<<<<< HEAD
-                    <Button
-                    onPress={() => { Actions.passcodeLogin()}}
-                    title={loginContent.usePasscode}/>
-                    <Touchable onPress={() => { Actions.passcodeLogin() }} style={styles.container}>
-                        <Label position="center">{ loginContent.loginOptions }</Label>
-                    </Touchable>     
+                      { maybeShowFingerPrintScan()}
+                        <Button
+                            onPress={() => { Actions.passcodeLogin()}}
+                            title={loginContent.usePasscode}/>
                 </View>
-                
-=======
-                </View>          
             </Row>
             <Row>
-                <Touchable onPress={() => { Actions.passcodeLogin() }} style={styles.container}>
-                    <Label position="center">{ loginContent.usePasscode }</Label>
-                </Touchable>           
->>>>>>> f9fdbbc2bf6898d912ddfb25cbcbf49bd45967de
+                <Touchable onPress={() => { Actions.register() }} style={styles.container}>
+                    <Label position="center">{ loginContent.register }</Label>
+                </Touchable>
             </Row>
 		</OutterWrapper>
 	);

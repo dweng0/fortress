@@ -5,6 +5,7 @@ import { Router, Stack, Scene } from 'react-native-router-flux';
 import OutterWrapper from "./src/components/wrapper";
 import Row from "./src/components/row";
 
+import Register from './src/pages/register';
 import Login from './src/pages/login';
 import Home from './src/pages/home';
 import BookingType from './src/pages/bookingtype';
@@ -42,12 +43,9 @@ export default function App() {
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
-<<<<<<< HEAD
-=======
-                
->>>>>>> f9fdbbc2bf6898d912ddfb25cbcbf49bd45967de
 					<Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
+                    <Scene key="register" component={Register} hideNavBar={true}/>
 				    <Scene key="home" component={Home}  hideNavBar={true}/>
 					<Scene key="bookingType" component={BookingType}/>
 					<Scene key="emergency" component={Emergency}/>

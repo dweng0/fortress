@@ -18,9 +18,9 @@ export default function Type() {
 				/>
 			</Row>
             <Row>
-                <Calendar/>
+                <Calendar availableSlots=""/>
             </Row>
-			<Row>				
+			<Row>
                 <Button onPress={() => {
 						console.log('non emergency booking selected')
 					}}
