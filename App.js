@@ -11,6 +11,8 @@ import BookingType from './src/pages/bookingtype';
 import Emergency from './src/pages/emergency';
 import NonEmergency from './src/pages/nonemergency';
 import Schedule from './src/pages/schedule';
+import NavBar from './src/components/navbar';
+import PassCode from "./src/pages/passcodelogin";
 
 export default function App() {
 
@@ -38,14 +40,16 @@ export default function App() {
     {
 		//move login to top when finished
         return (
-            <Router>
+            <Router  navBar = {NavBar}>
                 <Stack key="root">
-                	<Scene key="login" component={Login} hideNavBar={true}/>
-				    <Scene key="home" component={Home} hideNavBar={true}/>
-					<Scene  hideNavBar={true} key="bookingType" component={BookingType}/>
-					<Scene  hideNavBar={true} key="emergency" component={Emergency}/>
-                    <Scene  hideNavBar={true} key="nonemergency" component={NonEmergency}/>
-                    <Scene  hideNavBar={true} key="schedule" component={Schedule}/>
+                <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
+					<Scene key="login" component={Login} hideNavBar={true}/>
+
+				    <Scene key="home" component={Home}  hideNavBar={true}/>
+					<Scene key="bookingType" component={BookingType}/>
+					<Scene key="emergency" component={Emergency}/>
+                    <Scene key="nonemergency" component={NonEmergency}/>
+                    <Scene key="schedule" component={Schedule}/>
                 </Stack>
             </Router>
         );

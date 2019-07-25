@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import OutterWrapper from '../components/wrapper';
+import { Actions } from 'react-native-router-flux';
+
+import { bookingTypeContent } from '../international';
+
 import Header from '../components/header';
 import Row from '../components/row';
 import Button from '../components/button';
-import { bookingTypeContent } from '../international';
 import Label from '../components/label';
-import { Actions } from 'react-native-router-flux';
+import Help from '../components/help';
 
 export default function Type() {
 	return (

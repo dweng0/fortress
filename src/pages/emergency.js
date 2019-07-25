@@ -39,6 +39,7 @@ export default function Type() {
 					}}
 					title="Cancel"
 				/>
+             
 			</Row>
 		</OutterWrapper>
 	);

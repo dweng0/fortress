@@ -6,12 +6,17 @@ export const homeContent = {
 export const loginContent = {
     title: `Alexander's`,
     usePasscode: 'Login with passcode',
-	useFingerPrint: 'Login with fingerprint',
+	useFingerPrint: 'Login',
 	fingerPrintError: `That didn't work, please try again`,
 	fingerPrintErrorAlert: `That didn't work, try again?`,
 	failedToAuthenticateTitle: 'Failed to authenticate',
 	fingerScanPromptTitle: 'Fingerprint Scan',
 	fingerScanPromptMessage: 'Place your finger over the touch sensor.'
+}
+
+export const passcodeLogin = {
+    title: `Passcode`,
+    
 }
 
 export const bookingTypeContent = {
