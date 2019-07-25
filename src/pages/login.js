@@ -98,7 +98,7 @@ export default function Login() {
 			</Row>
             <Row>
                 <Animatable.View
-                    animation="fadeInDown"
+                    animation="fadeIn"
                     iterationCount={1}
                     delay={200}
                     style={{
