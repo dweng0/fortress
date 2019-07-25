@@ -32,6 +32,10 @@ export default function Login() {
         let isCompatible = await LocalAuthentication.hasHardwareAsync();
         setHasPrints(isCompatible);
         setCompatible(enrolled);
+
+        if (scannerButton) {
+            scanBiometrics();
+        }
 	}
 
 	const showAndroidAlert = () => {
@@ -44,30 +48,12 @@ export default function Login() {
 		);
 		scanBiometrics();
 	};
- 
-	
-	const checkForBiometrics = async () => {
-		let biometricRecords = await LocalAuthentication.isEnrolledAsync(); 
-		if (!biometricRecords) {
-		 console.log('no metrics')
-		} else {
-		  handleLoginPress();
-		}
-	  };
-	  	  
-	const handleLoginPress = () => {
-		if (Platform.OS === 'android') {
-		  showAndroidAlert();
-		} else {
-		  scanBiometrics();
-		}
-	  };
-	
 	
 	const scanBiometrics = async () => {
 		let result = await LocalAuthentication.authenticateAsync('Biometric Scan.');
 		console.log(result);
 		if (result.success) {
+            setScannerButtonPressed(false);
 			setAuthenticated(result.success);
 		  } else if (result.error && result.error !== 'user_cancel') {
 			Alert.alert(
@@ -100,7 +86,7 @@ export default function Login() {
             return (
                 
                 <Button
-                onPress={() => { setScannerButtonPressed(true); checkForBiometrics();}}
+                onPress={() => { setScannerButtonPressed(true); scanBiometrics();}}
                 title={loginContent.useFingerPrint}/>
             );
         }        
@@ -111,24 +97,22 @@ export default function Login() {
 			<Row>
 				<Header title={loginContent.title}/>
 			</Row>
-          
+            
            <Row>
                 <View style={styles.container}>                   
                     { maybeShowFingerPrintScan()}
-                </View>
-            </Row>
-			<Row>
-                <View style={styles.container}>
-                    {(scannerButton) ? <Label> { loginContent.fingerScanPromptMessage }</Label> : null}
+                     {(scannerButton) ? <Label> { loginContent.fingerScanPromptMessage }</Label> : null}
 					<ShakingText>
 						{errorMessage }
 					</ShakingText>
-                </View>          
-            </Row>
-            <Row>
-                <Touchable onPress={() => { Actions.passcodeLogin() }} style={styles.container}>
-                    <Label position="center">{ loginContent.usePasscode }</Label>
-                </Touchable>               
+                    <Button
+                    onPress={() => { Actions.passcodeLogin()}}
+                    title={loginContent.usePasscode}/>
+                    <Touchable onPress={() => { Actions.passcodeLogin() }} style={styles.container}>
+                        <Label position="center">{ loginContent.loginOptions }</Label>
+                    </Touchable>     
+                </View>
+                
             </Row>
 		</OutterWrapper>
 	);
