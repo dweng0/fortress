@@ -16,7 +16,7 @@ import PassCode from "./src/pages/passcodelogin";
 
 export default function App() {
 
-	
+
 
     const [fontLoaded, setFontLoaded] = useState(false);
 
@@ -25,18 +25,18 @@ export default function App() {
             await Font.loadAsync({
                 'poppins': require('./assets/fonts/Poppins-SemiBold.ttf')
 			});
-		
+
             setFontLoaded(true);
         }
         catch(e) {
             console.log('failed to load custom font... ')
-        }       
-        
+        }
+
     }
     loadFonts();
     }, []);
 
-    if(fontLoaded) 
+    if(fontLoaded)
     {
 		//move login to top when finished
         return (
@@ -67,5 +67,5 @@ export default function App() {
             </OutterWrapper>
         );
     }
-	
+
 }

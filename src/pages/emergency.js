@@ -12,15 +12,10 @@ export default function Type() {
     const [queryStatus, setQueryStatus] = useState('searching'); //found
 	return (
 		<OutterWrapper>
-			<Row>
-				<Header
-					title="Appointments"
-					description="Finding next available slot"
-				/>
-			</Row>
+			<Row> <Header title="Appointments" description="Finding closest booking" /> </Row>
 			<Row>
 				<Animatable.View
-					animation="bounce"
+					animation="pulse"
 					iterationCount="infinite"
 					style={{
 						justifyContent: "center",
