@@ -4,7 +4,6 @@ import OutterWrapper from "../components/wrapper";
 import Header from "../components/header";
 import Row from "../components/row";
 import Button from "../components/button";
-import Label from "../components/label";
 import Calendar from '../components/calendar';
 import { Actions } from "react-native-router-flux";
 
@@ -21,10 +20,7 @@ export default function Type() {
             <Row>
                 <Calendar/>
             </Row>
-			<Row>
-				<View style={{ alignItems: "center" }}>
-					<Label>Available slots up to 6 weeks in advance</Label>
-				</View>
+			<Row>				
                 <Button onPress={() => {
 						console.log('non emergency booking selected')
 					}}

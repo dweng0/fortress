@@ -104,6 +104,7 @@ export default function Login() {
 					<ShakingText>
 						{errorMessage }
 					</ShakingText>
+<<<<<<< HEAD
                     <Button
                     onPress={() => { Actions.passcodeLogin()}}
                     title={loginContent.usePasscode}/>
@@ -112,6 +113,14 @@ export default function Login() {
                     </Touchable>     
                 </View>
                 
+=======
+                </View>          
+            </Row>
+            <Row>
+                <Touchable onPress={() => { Actions.passcodeLogin() }} style={styles.container}>
+                    <Label position="center">{ loginContent.usePasscode }</Label>
+                </Touchable>           
+>>>>>>> f9fdbbc2bf6898d912ddfb25cbcbf49bd45967de
             </Row>
 		</OutterWrapper>
 	);

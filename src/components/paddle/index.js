@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 
 const NumberRow = ({ numbers, ...props }) => {
 	if (numbers.length !== 3) {
-		throw new Error('Each row only takes 3 numbers!');
+		throw new Error("Each row only takes 3 numbers!");
 	}
 
 	const getNumber = (number, index) => {
@@ -34,9 +34,14 @@ const NumberPad = ({
 	numberElement,
 	onChangeText,
 	onSubmitEditing,
+    maxLength,
+    submitOnMaxLength,
 	...props
 }) => {
-	let padValue = value || '';
+	let padValue = value || "";
+	if (!maxLength) {
+		throw new Error("Max pin length is required");
+	}
 	const submit = onSubmitEditing
 		? onSubmitEditing
 		: () => {
@@ -48,21 +53,30 @@ const NumberPad = ({
 	const onChange = onChangeText
 		? onChangeText
 		: () => {
-				console.warn('no onChangeText prop provided, please add it');
+				console.warn("no onChangeText prop provided, please add it");
 		  };
+
 	const onNumberPress = number => {
-		if (number === 'DEL') {
+		if (number === "DEL") {
 			return onBackPressed();
 		}
 
-		if (number === 'OK') {
+		if (number === "OK") {
 			return submit(padValue);
+        }
+        if (padValue.length === maxLength && submitOnMaxLength) {
+            console.log('length reached');
+            onSubmitEditing(padValue);
+        }
+
+		if (padValue.length < maxLength) {
+			padValue = `${padValue}${number}`;
+			onChange(padValue);
 		}
-		padValue = `${padValue}${number}`;
-		onChange(padValue);
 	};
 
 	const onBackPressed = () => {
+		console.log("back pressed ", padValue);
 		if (padValue) {
 			padValue = padValue.slice(0, padValue.length - 1);
 			onChange(padValue);
@@ -76,7 +90,7 @@ const NumberPad = ({
 			<NumberRow onPress={onNumberPress} numbers={[7, 8, 9]} {...props} />
 			<NumberRow
 				onPress={onNumberPress}
-				numbers={['DEL', 0, 'OK']}
+				numbers={["DEL", 0, "OK"]}
 				{...props}
 			/>
 		</View>
@@ -86,22 +100,22 @@ const NumberPad = ({
 const sheet = StyleSheet.create({
 	row: {
 		flex: 1,
-		width: '100%',
-		height: '25%',
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center'
+		width: "100%",
+		height: "25%",
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center"
 	},
 	numberFont: {
 		fontSize: 24,
-		paddingTop: '8.5%',
-		minWidth: '30%',
-		height: '100%',
-		textAlign: 'center'
+		paddingTop: "8.5%",
+		minWidth: "30%",
+		height: "100%",
+		textAlign: "center"
 	},
 	container: {
 		flex: 3,
-        justifyContent: 'space-between'       
+		justifyContent: "space-between"
 	}
 });
 export default NumberPad;

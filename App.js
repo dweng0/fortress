@@ -42,6 +42,10 @@ export default function App() {
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
+<<<<<<< HEAD
+=======
+                
+>>>>>>> f9fdbbc2bf6898d912ddfb25cbcbf49bd45967de
 					<Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
 				    <Scene key="home" component={Home}  hideNavBar={true}/>
