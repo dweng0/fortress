@@ -43,13 +43,13 @@ export default function App() {
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
+                    <Scene key="nonemergency" component={NonEmergency}/>
 					<Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
                     <Scene key="register" component={Register} hideNavBar={true}/>
 				    <Scene key="home" component={Home}  hideNavBar={true}/>
 					<Scene key="bookingType" component={BookingType}/>
 					<Scene key="emergency" component={Emergency}/>
-                    <Scene key="nonemergency" component={NonEmergency}/>
                     <Scene key="schedule" component={Schedule}/>
                 </Stack>
             </Router>
