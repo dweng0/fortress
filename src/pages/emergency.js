@@ -7,9 +7,16 @@ import Button from "../components/button";
 import * as Animatable from "react-native-animatable";
 import Label from "../components/label";
 import { Actions } from "react-native-router-flux";
+import constants from '../constants';
+import useFetch from '../hooks';
 
 export default function Type() {
     const [queryStatus, setQueryStatus] = useState('searching'); //found
+    const { response, error, isLoading } = useFetch('/surgeries/dbbec180a7f3a63c978d9ee0f31212fd');
+
+    if(response) {
+        console.log(response);
+    }
 	return (
 		<OutterWrapper>
 			<Row><Header title="Appointments" description="Finding closest booking" /></Row>
