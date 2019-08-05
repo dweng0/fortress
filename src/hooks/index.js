@@ -1,13 +1,16 @@
 import React from 'react';
 import constants from '../constants';
 
+/**
+* useFetch options passes straight down to the javascript fetch api, take a look at that documentation
+*/
 const useFetch = (urlPart, options) => {
     const [response, setResponse] = React.useState(null);
     const [error, setError ] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     useEffect(async () => {
         setIsLoading(true);
-        fetch(`${constants}${urlPart}`)
+        fetch(`${constants}${urlPart}`, options)
             .then(
                 response => {
                     if (response.status > 299) {

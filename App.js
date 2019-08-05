@@ -14,10 +14,9 @@ import NonEmergency from './src/pages/nonemergency';
 import Schedule from './src/pages/schedule';
 import NavBar from './src/components/navbar';
 import PassCode from "./src/pages/passcodelogin";
+import ScheduleDetail from "./src/pages/scheduledetails";
 
 export default function App() {
-
-
 
     const [fontLoaded, setFontLoaded] = useState(false);
 
@@ -43,14 +42,15 @@ export default function App() {
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
+                    <Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="nonemergency" component={NonEmergency}/>
-					<Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
                     <Scene key="register" component={Register} hideNavBar={true}/>
 				    <Scene key="home" component={Home}  hideNavBar={true}/>
 					<Scene key="bookingType" component={BookingType}/>
 					<Scene key="emergency" component={Emergency}/>
                     <Scene key="schedule" component={Schedule}/>
+                    <Scene key="scheduleDetail" component={ScheduleDetail}/>
                 </Stack>
             </Router>
         );

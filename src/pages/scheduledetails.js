@@ -8,7 +8,8 @@ import Button from "../components/button";
 import { Actions } from "react-native-router-flux";
 import { homeContent } from "../international";
 
-export default function Home() {
+export default function Home(props) {
+    console.log('booking id is', props.id)
 	return (
 		<OutterWrapper>
 			<Row>

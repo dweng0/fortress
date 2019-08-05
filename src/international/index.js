@@ -1,11 +1,36 @@
+import i18n from "i18next";
+import { useTranslation, initReactI18next } from "react-i18next";
+
+i18n
+  .use(initReactI18next) // passes i18n down to react-i18next
+  .init({
+    resources: {
+      en: {
+        translation: {
+          "App Name": "applicationName",
+          "Passcode": "Passcode",
+
+        }
+      }
+    },
+    lng: "en",
+    fallbackLng: "en",
+
+    interpolation: {
+      escapeValue: false
+    }
+  });
+
+const { t } = useTranslation();
+//https://react.i18next.com/guides/the-drawbacks-of-other-i18n-solutions
 export const homeContent = {
     bookAppointment: 'Book',
     showBookings: 'My Bookings'
 }
 
 export const loginContent = {
-    title: `Alexander's`,
-    usePasscode: 'Passcode',
+    title: `${t('App Name')}`,
+    usePasscode: `${t('Passcode')}`,
 	useFingerPrint: 'Fingerprint',
 	fingerPrintError: `That didn't work, please try again`,
 	fingerPrintErrorAlert: `That didn't work, try again?`,

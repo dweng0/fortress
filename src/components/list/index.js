@@ -20,22 +20,25 @@ const styles = StyleSheet.create({
         borderColor: '#000'
     }
   })
-  
+
 
 const appointmentsMock = [
 	{
+        id: 1,
 		doctor: "Picard",
 		date: moment()
 			.add(getRandomInt(5), "day")
 			.toISOString()
     },
     {
+        id: 2,
 		doctor: "Spock",
 		date: moment()
 			.add(getRandomInt(12), "day")
 			.toISOString()
     },
     {
+        id: 3,
 		doctor: "Creed",
 		date: moment()
 			.add(getRandomInt(50), "day")
@@ -55,9 +58,9 @@ const appointmentsMock = [
 	}
 ];
 const renderItem = ({onPress, item, ...props}) => {
-    console.log('item is', item);
+
 	return (
-		<Touchable onPress={() => {console.log('test')}} >  
+		<Touchable onPress={() => onPress(item.id)} >
             <View  style={styles.row}>
                 <Label size="mediumSmall" >
                     Dr. {item.doctor}

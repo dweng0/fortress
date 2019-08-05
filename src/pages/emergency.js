@@ -7,7 +7,6 @@ import Button from "../components/button";
 import * as Animatable from "react-native-animatable";
 import Label from "../components/label";
 import { Actions } from "react-native-router-flux";
-import constants from '../constants';
 import useFetch from '../hooks';
 
 export default function Type() {

@@ -35,7 +35,7 @@ export default function Type() {
 				</Animatable.View>
 			</Row>
             <Row>
-                    <List/>
+                    <List onPress={(bookingSlot) => {console.log('here'); Actions.scheduleDetail(bookingSlot) }}/>
             </Row>
 			<Row>
 				<Button
