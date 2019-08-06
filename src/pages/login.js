@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Alert, Platform, Image } from "react-native";
 import * as LocalAuthentication from 'expo-local-authentication';
+import * as AppAuth from 'expo-app-auth';
+
 import ShakingText from 'react-native-shaking-text';
 import * as Animatable from "react-native-animatable";
 import Label from '../components/label';
@@ -123,7 +125,10 @@ export default function Login() {
 					</ShakingText>
                       { maybeShowFingerPrintScan()}
                         <Button
-                            onPress={() => { Actions.passcodeLogin()}}
+                            onPress={() => {
+
+                                //Actions.passcodeLogin()
+                            }}
                             title={loginContent.usePasscode}/>
                 </View>
             </Row>

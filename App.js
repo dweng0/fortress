@@ -15,10 +15,88 @@ import Schedule from './src/pages/schedule';
 import NavBar from './src/components/navbar';
 import PassCode from "./src/pages/passcodelogin";
 import ScheduleDetail from "./src/pages/scheduledetails";
+import firebase from 'firebase'
+import '@firebase/firestore';
+
+// Initialize Firebase
+const firebaseConfig = {
+   apiKey: "AIzaSyCGcYuwhC_TgSa09SxpUdeZe_v770UoFfg",
+  authDomain: "localhost",
+  projectId: "fortress-da186"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const dbh = firebase.firestore();
+
+console.log(dbh)
+
+const surgeryFlat = {
+    name: "Village Surgery",
+    website: "www.bear.care",
+    openingTimes: {
+        monday: ["09:00:00", "15:00:00"],
+        tuesday: ["09:00:00", "15:00:00"],
+        wednesday: ["09:00:00", "15:00:00"],
+        thursday: ["09:00:00", "15:00:00"],
+        friday: ["09:00:00", "15:00:00"],
+    },
+
+    staff: {
+        "23e23ead": {
+            profession:"Doctor"
+        }
+    },
+    //the key is the uid
+    patients: {
+        "asdf323": {
+            dateOfBirth:"03/12/2019",
+            hasChildren:true
+        },
+        "sdw4223r2r": {
+            dateOfBirth:"03/12/2019",
+            hasChildren:false,
+        }
+    },
+    practiceDays: {
+        "13/08/2019": { //have practice days as an array
+            "09:00:00": {
+                emergencyOnly:false,
+                staff:"2323ij2o3irj"
+            },
+            "10:00:00":{
+                emergencyOnly:true,
+                staff:"2312fefe"
+            },
+            "09:30:00": {
+                emergencyOnly:false,
+                staff:"2312fefe",
+                patient:"sdw4223r2r"
+            }
+        }
+    },
+    //tokens waiting on people to register, if they match up, then they can be added to this surgeries patient object.
+    //user flow:
+    // user gets a registry token from their surgery
+    // user downloads app
+    //user selects register
+    // user finds their surgery by typing in its name in the app
+    // user enters their token, dataof birth and postcode.
+    // if it matches, they are added to the surgery patient list and can begin making appointments straight away
+    tokens: [
+        {
+            lastName: "Martin-Smith", //we dont care about this, but if they phone up, the receptionist can confirm their db, postcode and last name
+            registryToken: "123",
+            postCode: "bh88py",
+            dateOfBirth: "01/16/1988"
+        }
+    ]
+}
 
 export default function App() {
-
     const [fontLoaded, setFontLoaded] = useState(false);
+    const [connectionMade, setConnectionMade] = useState(false);
+
 
     useEffect(()=>{ const loadFonts = async () => {
         try {
@@ -36,7 +114,12 @@ export default function App() {
     loadFonts();
     }, []);
 
-    if(fontLoaded)
+
+    dbh.collection("surgeries").doc("surgery").set(surgeryFlat)
+    .then(() => {setConnectionMade(true)})
+    .catch(e => {console.log(e)});
+
+    if(fontLoaded && connectionMade)
     {
 		//move login to top when finished
         return (
