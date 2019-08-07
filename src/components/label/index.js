@@ -21,9 +21,9 @@ const Label = ({ size, position, style, color, ...props }) => {
 	}
 
 	if(color) {
-		styles.color = 'red'
+		styles.color = color
 	}
-	
+
     return <Text style={styles}>{props.children}</Text>
 }
 
