@@ -43,9 +43,11 @@ export const loginContent = {
 
 export const register = {
     title: 'Register',
-    smallDescription: 'We are glad you want to register with us. If your GP is signed up to the scheme then you will have recieved a registration code, please enter this now.',
+    smallDescription: 'We are glad you want to register with us. If your GP is signed up to the scheme then you will have recieved a activation code, please enter this now.',
     label: 'Please enter your registration code',
-    submit: 'submit'
+    submit: 'submit',
+    birthDate: 'Date of Birth',
+    lastName: 'Last name'
 }
 
 export const passcodeLogin = {
