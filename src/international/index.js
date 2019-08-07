@@ -47,7 +47,13 @@ export const register = {
     label: 'Please enter your registration code',
     submit: 'submit',
     birthDate: 'Date of Birth',
-    lastName: 'Last name'
+    postCode: 'Postcode',
+    errorRegistrationCodeMissing: 'Registration code required',
+    errorRegistrationCodeIncorrect: 'The registration code was incorrect',
+    errorDateOfBirthMissing: 'Date of birth is required',
+    errorDateOfBirthIncorrect: 'Date of birth is required',
+    errorDateOfBirthPostcodeMissing: 'Postcode is required',
+    errorDateOfBirthPostcodeIncorrect: 'Postcode incorrect'
 }
 
 export const passcodeLogin = {
@@ -57,6 +63,14 @@ export const passcodeLogin = {
 export const bookingTypeContent = {
 	emergency: 'Emergency',
 	scheduled: 'Scheduled'
+}
+
+export const emailAndPassword = {
+    username: 'Email',
+    password: 'Password',
+    confirm: 'Confirm password',
+    errorEmailIncorrect: 'Email address is incorrect',
+    errorPassword: 'Passwords do not match'
 }
 
 export default {

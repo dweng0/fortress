@@ -48,11 +48,6 @@ export default function App() {
     loadFonts();
     }, []);
 
-/* 
-    dbh.collection("surgeries").doc("surgery").set(surgeryFlat)
-    .then(() => {setConnectionMade(true)})
-    .catch(e => {console.log(e)});
- */
     if(fontLoaded)
     {
 		//move login to top when finished
@@ -63,7 +58,7 @@ export default function App() {
                     <Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="nonemergency" component={NonEmergency}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
-                    
+
 				    <Scene key="home" component={Home}  hideNavBar={true}/>
 					<Scene key="bookingType" component={BookingType}/>
 					<Scene key="emergency" component={Emergency}/>
