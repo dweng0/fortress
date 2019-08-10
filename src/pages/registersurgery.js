@@ -15,6 +15,7 @@ import { Actions } from "react-native-router-flux";
 import { useDocument } from "../hooks";
 
 import { register } from "../international";
+import console = require("console");
 
 const missingRegisterCode = "Please enter a registration code";
 const registrationComplete =
@@ -28,7 +29,7 @@ export default function Register() {
 	const [registerCode, setRegisterCode] = useState("");
 	const [dateOfBirth, setDateOfBirth] = useState("");
 	const [lastName, setLastName] = useState("");
-    const [response, setDocument] = useDocument();
+    const [document, setDocument] = useDocument();
 	const [errors, setErrors] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState("");
@@ -58,7 +59,19 @@ export default function Register() {
 		} else if (loading) {
 			setMessage(checking);
 		}
-	};
+    };
+    
+    useEffect(() => {
+        if (document) {
+            console.log('response!', document);
+            const { response, loaded, err} = document;
+
+            console.log(document);
+
+            
+        }
+       
+    }, [document])
 
 	return (
 		<OutterWrapper>
