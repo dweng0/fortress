@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Actions } from "react-native-router-flux";
 
 import RegisterForm from '../components/emailandpassword';
 import Row from '../components/row';
-
 import service from '../service';
+import { useDocument }  from '../hooks'
+
 
 const content = {
     missing: 'please fill in the required fields',
@@ -14,6 +16,7 @@ export default () => {
 	const [password, setPassword] = useState('');
     const [message, setMessage] = useState(null);
     const [hasErrors, setHasErrors] = useState(false);
+
 	const submitRegistration = () => {
 		if (email && password) {
             service.auth().createUserWithEmailAndPassword(email, password)

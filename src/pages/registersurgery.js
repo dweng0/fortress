@@ -12,7 +12,7 @@ import Label from "../components/label";
 import Button from "../components/button";
 import { Actions } from "react-native-router-flux";
 
-import useFetch from "../hooks";
+import { useDocument } from "../hooks";
 
 import { register } from "../international";
 
@@ -28,30 +28,18 @@ export default function Register() {
 	const [registerCode, setRegisterCode] = useState("");
 	const [dateOfBirth, setDateOfBirth] = useState("");
 	const [lastName, setLastName] = useState("");
-
+    const [response, setDocument] = useDocument();
 	const [errors, setErrors] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState("");
 
-	onFormSubmit = () => {
+	const onFormSubmit = () => {
 		if (_.isEmpty(registerCode)) {
 			errors.push(missingRegisterCode);
 		}
-
-		const { response, error, isLoading } = useFetch("/register", {
-			method: "POST",
-			headers: {
-				"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-			},
-			body: `registartionId=${registerCode}`
-		});
-
-		if (error) {
-			setErrors.push(error);
-		}
-
-		setLoading(isLoading);
-
+        if (_.isEmpty(errors)) {
+            setDocument('get', 'surgeries');
+        }
 		if (response) {
 			//user sends registration code to server,
 			//server has a registration code that maps to a specific user, checks the code, generates a unique identifier token and provides this back to the app

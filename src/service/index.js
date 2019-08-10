@@ -9,7 +9,7 @@ const configuration = {
     }
 };
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(configuration.firebaseConfig);
 
 export default {
     collections: firebase.firestore(),

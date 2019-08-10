@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { TextInput } from 'react-native';
 
-import Row from '../components/row';
-import Label from '../components/label';
+import Row from '../row';
+import Label from '../label';
 
-import { emailAndPassword } from '../international';
+import { emailAndPassword } from '../../international';
 
 export default props => {
 	const [email, setEmail] = useState('');

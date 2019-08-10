@@ -1,47 +1,51 @@
-import firebase from 'firebase'
 import '@firebase/firestore';
-import React from 'react';
+import React, {useEffect} from 'react';
 import service from '../service';
 
 const dbh = service.collections;
 
 
-  export const useDocument = (method, collection, data, options) => {
-    const [promise, setPromise] = React.useState(null);
-    const [error, setError ] = React.useState(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const effect = async () => {
-    setIsLoading(true);
+  export const useDocument = () => {
+    const [response, setResponse] = React.useState(null);
+    const [loaded, setLoaded] = React.useState(false);
+    const [err, setErr] = React.useState(null);
+
+    const  setDocument = (method, collection, data) => {
+        let query;
         try {
             switch(method.toLowerCase()) {
-            case 'get': {
-                return dbh.collection(collection).get();
-            }
-            case 'put': {
-                if(!data || !data.id) {
-                    throw new Error('must provide an id in the data object to update collections');
+                case 'get': {
+                    query = dbh.collection(collection).get()
+                    
+                    break ;
                 }
-                dbh.collection(collection).doc(data.id);
+                case 'put': {
+                    if(!data || !data.id) {
+                        throw new Error('must provide an id in the data object to update collections');
+                    }
+                    query = dbh.collection(collection).doc(data.id);
+                    break;
+                }
+                case 'post': {
+                query = dbh.collection(collection).set(data);
+                break;
+                }           
+                default: {
+                    query = dbh.collection(collection).get();
+                    break;
+                }            
             }
-            case 'post': {
-              return dbh.collection(collection).set(data)
-            }
-            case 'delete': {
-
-            }
-            default: {
-                //treat like a get
-            }
-        }
+        query.then((resp) => {setResponse(resp)})
+        .catch(e => setErr(e));
         }
         catch(e) {
-            setIsLoading(false);
-            setError('Error communicating with database');
+          setErr(e);
         }
+    };
 
-    }
-    useEffect( () => {effect();}, []);
-    return { promise, error, isLoading};
+    useEffect(() => {
+        setLoaded(!!(response));
+    }, [response, err]);
+
+    return [{response, loaded, err}, setDocument];
   }
-
-  export default useFetch;
