@@ -9,7 +9,6 @@ const Container = styled.View`
     padding-top: 45px;
 `;
 
-
 const OutterWrapper = props => {
     return<Container>{props.children}</Container>
 }

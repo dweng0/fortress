@@ -1,4 +1,4 @@
-import '@firebase/firestore';
+/* import '@firebase/firestore';
 import React, {useEffect} from 'react';
 import service from '../service';
 
@@ -16,7 +16,7 @@ const dbh = service.collections;
             switch(method.toLowerCase()) {
                 case 'get': {
                     query = dbh.collection(collection).get()
-                    
+
                     break ;
                 }
                 case 'put': {
@@ -29,11 +29,11 @@ const dbh = service.collections;
                 case 'post': {
                 query = dbh.collection(collection).set(data);
                 break;
-                }           
+                }
                 default: {
                     query = dbh.collection(collection).get();
                     break;
-                }            
+                }
             }
         query.then((resp) => {setResponse(resp)})
         .catch(e => setErr(e));
@@ -49,3 +49,4 @@ const dbh = service.collections;
 
     return [{response, loaded, err}, setDocument];
   }
+ */

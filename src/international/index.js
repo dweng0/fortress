@@ -67,7 +67,8 @@ export const bookingTypeContent = {
 };
 
 export const emailAndPassword = {
-	username: 'Email',
+	username: 'Username',
+    email: 'Email',
 	password: 'Password',
 	confirm: 'Confirm password',
 	errorEmailIncorrect: 'Email address is incorrect',

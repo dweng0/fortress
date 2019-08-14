@@ -4,9 +4,7 @@ import * as Font from 'expo-font';
 import { Router, Stack, Scene } from 'react-native-router-flux';
 import OutterWrapper from "./src/components/wrapper";
 import Row from "./src/components/row";
-import firebase from 'firebase'
-import '@firebase/firestore';
-
+import service from './src/service';
 import Register from './src/pages/register';
 import Login from './src/pages/login';
 import Home from './src/pages/home';
@@ -17,17 +15,6 @@ import Schedule from './src/pages/schedule';
 import NavBar from './src/components/navbar';
 import PassCode from "./src/pages/passcodelogin";
 import ScheduleDetail from "./src/pages/scheduledetails";
-
-import surgeryDocumentExample from './prepopulate/surgery';
-// Initialize Firebase
-const firebaseConfig = {
-   apiKey: "AIzaSyCGcYuwhC_TgSa09SxpUdeZe_v770UoFfg",
-  authDomain: "localhost",
-  projectId: "fortress-da186"
-};
-
-firebase.initializeApp(firebaseConfig);
-const dbh = firebase.firestore();
 
 export default function App() {
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -54,11 +41,10 @@ export default function App() {
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
-                <Scene key="register" component={Register}/>
+                <Scene key="register" component={Register} service={service}/>
                     <Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="nonemergency" component={NonEmergency}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
-
 				    <Scene key="home" component={Home}  hideNavBar={true}/>
 					<Scene key="bookingType" component={BookingType}/>
 					<Scene key="emergency" component={Emergency}/>
