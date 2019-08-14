@@ -6,7 +6,6 @@ import Row from '../components/row';
 import Label from '../components/label';
 import Button from '../components/button';
 
-import service from '../service';
 import { useDocument }  from '../hooks'
 
 
@@ -20,15 +19,22 @@ export default props => {
     const [message, setMessage] = useState(null);
     const [hasErrors, setHasErrors] = useState(false);
 
-    const { database } = props;
+    const { service } = props;
+    console.log(service);
+    const firebase = service;
 
-    console.log(database)    ;
+    const wrappedValidation = () => {
+
+    }
 
 	const submitRegistration = () => {
 		if (email && password) {
+            setMessage('Registering....')
             service.auth().createUserWithEmailAndPassword(email, password)
-            .then(
-                console.log('todo move to next page')
+            .then((response) => {
+                console.log('====got response===', response);
+                //https://firebase.google.com/docs/auth/web/password-auth
+            }
             )
             .catch(e => {
                 setMessage(e.message);
@@ -50,12 +56,11 @@ export default props => {
                 errors={err => setHasErrors(!!(err))}
 			/>
             <Row>
-                <Label size="small" color="tomato" position="center">
+                <Label size="small" position="center">
                     { (message) ? message : '' }
                 </Label>
-                <Button onPress={() => submitRegistration } title={content.submit} />
+                <Button onPress={() => submitRegistration() } title={content.submit} />
             </Row>
 		</OutterWrapper>
 	);
 };
-//set button disabled based on if form has errors

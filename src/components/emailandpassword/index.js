@@ -15,8 +15,8 @@ export default props => {
     const [passwordError, setPasswordError] = useState('');
 
     useEffect(() => {
+        props.errors(null);
         if (password && password === confirm) {
-            //propogate up parent component
             if (props.email) {
                 props.email(email);
             }
@@ -32,19 +32,16 @@ export default props => {
 
     }, [email, password, confirm, emailError, passwordError]);
     const validateEmail = () => {
-        console.log(email);
+        setEmailError(false);
         if (email && !email.includes('@')) {
             setEmailError(emailAndPassword.errorEmailIncorrect);
-        } else {
-            setEmailError(false);
         }
     };
 
     const validatePassword = () => {
+        setPasswordError(false);
         if (password !== confirm) {
             setPasswordError(emailAndPassword.errorPassword);
-        } else {
-            setPasswordError(false);
         }
     }
 
