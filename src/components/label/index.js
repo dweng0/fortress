@@ -10,7 +10,10 @@ const fontSizes = {
 };
 const Label = ({ size, position, style, color, ...props }) => {
 
-	let styles = style || {};
+	let styles = style || {
+        marginLeft: 20,
+        marginRight: 20
+    };
 	styles.fontFamily = "poppins";
     if (size && fontSizes[size]) {
         styles.fontSize = fontSizes[size];

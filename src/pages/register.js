@@ -34,6 +34,9 @@ export default props => {
             setMessage('Registering....')
             service.auth().createUserWithEmailAndPassword(email, password)
             .then((response) => {
+                service.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                    setMessage(error.message);
+                });
                 Actions.surgerySelect();
             })
             .catch(e => {

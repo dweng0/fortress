@@ -42,11 +42,9 @@ export default function App() {
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
-
-
-                    <Scene key="surgerySelect"component={SurgerySelect} hideNavBar={true} service={service}/>
-                    <Scene key="login" component={Login} hideNavBar={true}/>
+                    <Scene key="login" component={Login} hideNavBar={true} firebase={service}/>
                     <Scene key="register" component={Register} hideNavBar={true} service={service}/>
+                    <Scene key="surgerySelect"component={SurgerySelect} hideNavBar={true} service={service}/>
                     <Scene key="nonemergency" component={NonEmergency}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
 				    <Scene key="home" component={Home}  hideNavBar={true}/>

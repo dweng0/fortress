@@ -10,9 +10,11 @@ import Header from '../components/header';
 import Row from '../components/row';
 import Label from '../components/label';
 import Button from '../components/button';
+import MessageList from '../components/messagelist';
 import { Actions } from 'react-native-router-flux';
 
 import { register } from '../international';
+import data from '../pages/tokens';
 
 const content = {
     missingRegisterCode: 'Please enter a registration code',
@@ -20,8 +22,10 @@ const content = {
     checking: 'content.checking registration code',
     registrationCodePlaceholder: 'Activation code',
     details: 'Your surgery will have given you an activation code, enter this now',
+    missingBirthdate: 'Please add a birthdate',
     dob: 'Your date of birth',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    registering: 'Registering...'
 }
 
 export default props => {
@@ -33,32 +37,35 @@ export default props => {
 	const [message, setMessage] = useState('');
 
     const { service } = props;
+    const db = service.firestore();
+    //db.collection('tokens').add(data);
+    //https://firebase.google.com/docs/firestore/quickstart?authuser=0
 
 	const onFormSubmit = () => {
+        setErrors([]);
 		if (_.isEmpty(registerCode)) {
 			errors.push(content.missingRegisterCode);
 		}
-        if (_.isEmpty(errors)) {
-            setDocument('get', 'surgeries');
+
+        if(_.isEmpty(dateOfBirth)) {
+            errors.push(content.missingBirthdate);
         }
-		if (response) {
-			//user sends registration code to server,
-			//server has a registration code that maps to a specific user, checks the code, generates a unique identifier token and provides this back to the app
-			//the app leverages secure store to store this for the application. This can then be used to authorise user specific requests, such as making bookings.
-			SecureStore.setItemAsync('patient_token_identifier', response.identifier)
-				.then(() => {
-					setMessage(content.registrationComplete);
-				})
-				.catch(e => setError(e.message));
-		} else if (errors.length > 0) {
-			setMessage(
+        if (_.isEmpty(errors)) {
+            setMessage(content.registering);
+            service.db.collection().get()
+            .then(() => {
+                console.log('todo homie')
+            })
+            .catch((e) => {
+                setMessage(e.message);
+            });
+        } else {
+            setMessage(
 				errors.reduce((p, c) => {
-					return p + ' ' + c;
+					return p + ' \r\n' + c;
 				}, '')
 			);
-		} else if (loading) {
-			setMessage(content.checking);
-		}
+        }
     };
 
 	return (
@@ -81,7 +88,7 @@ export default props => {
 						alignItems: 'center'
 					}}
                     textContentType = 'oneTimeCode'
-					onChangeText={text => setRegisterCode({ text })}
+					onChangeText={text => setRegisterCode(text)}
 					value={registerCode}
 				/>
                 <Label size='small' position='center'>
@@ -101,18 +108,14 @@ export default props => {
 						alignItems: 'center'
 					}}
                     placeholder='DD/MM/YYYY'
-					onChangeText={text => setDateOfBirth({ text })}
-					value={registerCode}
+					onChangeText={text => setDateOfBirth(text)}
+					value={dateOfBirth}
 				/>
 			</Row>
-			<Row />
+
 			<Row>
-				<Button
-					onPress={() => {
-						Actions.home();
-					}}
-					title={register.submit}
-				/>
+                <Label>{message}</Label>
+				<Button onPress={() => onFormSubmit() } title={register.submit}/>
                 <Button onPress={() => Actions.login() } title={content.cancel} />
 			</Row>
 		</OutterWrapper>
