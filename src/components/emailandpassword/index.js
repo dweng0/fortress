@@ -69,7 +69,7 @@ export default props => {
         if (props.confirmPassword) {
             return (
                 <>
-                    <Label size="medium" position="center">
+                    <Label size="small" position="center">
                         {emailAndPassword.confirm}
                     </Label>
                     <TextInput
@@ -97,7 +97,7 @@ export default props => {
 
     return (
         <Row>
-                <Label size="medium" position="center">
+                <Label size="small" position="center">
                     {emailAndPassword.email}
                 </Label>
                 <TextInput
@@ -118,7 +118,7 @@ export default props => {
                     value={email}
                 />
                 {maybeShowEmailError()}
-                <Label size="medium" position="center">
+                <Label size="small" position="center">
                     {emailAndPassword.password}
                 </Label>
                 <TextInput

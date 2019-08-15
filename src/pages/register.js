@@ -12,7 +12,8 @@ import { useDocument }  from '../hooks'
 
 const content = {
     missing: 'please fill in the required fields',
-    submit: 'next'
+    submit: 'next',
+    cancel: 'cancel'
 }
 export default props => {
 	const [email, setEmail] = useState('');
@@ -59,6 +60,7 @@ export default props => {
                     { (message) ? message : '' }
                 </Label>
                 <Button onPress={() => submitRegistration() } title={content.submit} />
+                <Button onPress={() => Actions.login() } title={content.cancel} />
             </Row>
 		</OutterWrapper>
 	);
