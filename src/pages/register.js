@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Actions } from "react-native-router-flux";
+
 import OutterWrapper from '../components/wrapper';
 import RegisterForm from '../components/emailandpassword';
 import Row from '../components/row';
@@ -20,7 +21,7 @@ export default props => {
     const [hasErrors, setHasErrors] = useState(false);
 
     const { service } = props;
-    console.log(service);
+
     const firebase = service;
 
     const wrappedValidation = () => {
@@ -32,10 +33,8 @@ export default props => {
             setMessage('Registering....')
             service.auth().createUserWithEmailAndPassword(email, password)
             .then((response) => {
-                console.log('====got response===', response);
-                //https://firebase.google.com/docs/auth/web/password-auth
-            }
-            )
+                Actions.surgerySelect();
+            })
             .catch(e => {
                 setMessage(e.message);
             })

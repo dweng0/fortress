@@ -25,11 +25,12 @@ export default function Type() {
     const [calenderData, setCalendarData] = useState({});
 
     //we only care if the day is fully booked
-    let unavailableDays = {}
-    let maxDates = null
+    let unavailableDays = {};
+    let maxDates = null;
+
     useEffect(() => {
         //set unavailable dates
-    }, [calenderData])
+    }, [calenderData]);
 
     const maybeLoadCalender = () => {
         //negative for testing

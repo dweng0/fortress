@@ -12,31 +12,31 @@ import Label from "../components/label";
 import Button from "../components/button";
 import { Actions } from "react-native-router-flux";
 
-import { useDocument } from "../hooks";
-
 import { register } from "../international";
-import console = require("console");
 
-const missingRegisterCode = "Please enter a registration code";
-const registrationComplete =
-	"Your registration was succesfull! You can start using the app straightaway";
-const checking = "Checking registration code";
-const registrationCodePlaceholder = "Activation code";
-const birthDatePlaceHolder = "MM/DD/YYYY";
+const content = {
+    missingRegisterCode: "Please enter a registration code",
+    registrationComplete: "Your registration was succesfull! You can start using the app straightaway",
+    checking: "content.checking registration code",
+    registrationCodePlaceholder: "Activation code",
+    details: "Your surgery will have given you an activation code, enter this now",
+    name: "Surgery Name"
+}
 
-
-export default function Register() {
+export default props => {
 	const [registerCode, setRegisterCode] = useState("");
+    const [surgeryName, setSurgeryName] = useState("");
 	const [dateOfBirth, setDateOfBirth] = useState("");
 	const [lastName, setLastName] = useState("");
-    const [document, setDocument] = useDocument();
 	const [errors, setErrors] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState("");
 
+    const { service } = props;
+
 	const onFormSubmit = () => {
 		if (_.isEmpty(registerCode)) {
-			errors.push(missingRegisterCode);
+			errors.push(content.missingRegisterCode);
 		}
         if (_.isEmpty(errors)) {
             setDocument('get', 'surgeries');
@@ -47,7 +47,7 @@ export default function Register() {
 			//the app leverages secure store to store this for the application. This can then be used to authorise user specific requests, such as making bookings.
 			SecureStore.setItemAsync("patient_token_identifier", response.identifier)
 				.then(() => {
-					setMessage(registrationComplete);
+					setMessage(content.registrationComplete);
 				})
 				.catch(e => setError(e.message));
 		} else if (errors.length > 0) {
@@ -57,21 +57,9 @@ export default function Register() {
 				}, "")
 			);
 		} else if (loading) {
-			setMessage(checking);
+			setMessage(content.checking);
 		}
     };
-    
-    useEffect(() => {
-        if (document) {
-            console.log('response!', document);
-            const { response, loaded, err} = document;
-
-            console.log(document);
-
-            
-        }
-       
-    }, [document])
 
 	return (
 		<OutterWrapper>
@@ -91,10 +79,32 @@ export default function Register() {
 						style={{ width: 100, height: 100 }}
 					/>
 				</Animatable.View>
+                 <Label size="small" position="center">
+					{content.details}
+				</Label>
 			</Row>
 			<Row>
                 <Label size="medium" position="center">
-					{registrationCodePlaceholder}
+                    {content.name}
+				</Label>
+				<TextInput
+					style={{
+						marginTop: 10,
+						padding: 19,
+						marginLeft: 20,
+						marginRight: 20,
+						minWidth: 300,
+						backgroundColor: "#fff",
+						borderRadius: 7,
+						borderWidth: 2,
+						borderColor: "#000",
+						alignItems: "center"
+					}}
+					onChangeText={text => setSurgeryName({ text })}
+					value={registerCode}
+				/>
+                <Label size="medium" position="center">
+					{content.registrationCodePlaceholder}
 				</Label>
 				<TextInput
 					style={{
@@ -112,51 +122,12 @@ export default function Register() {
 					onChangeText={text => setRegisterCode({ text })}
 					value={registerCode}
 				/>
-				<Label size="medium" position="center">
-					{register.birthDate}
-				</Label>
-				<TextInput
-					style={{
-						marginTop: 10,
-						padding: 19,
-						marginLeft: 20,
-						marginRight: 20,
-						minWidth: 300,
-						backgroundColor: "#fff",
-						borderRadius: 7,
-						borderWidth: 2,
-						borderColor: "#000",
-						alignItems: "center"
-					}}
-					onChangeText={text => setDateOfBirth({ text })}
-					value={dateOfBirth}
-					placeholder={birthDatePlaceHolder}
-				/>
-				<Label size="medium" position="center">
-					{register.lastName}
-				</Label>
-				<TextInput
-					style={{
-						marginTop: 10,
-						padding: 19,
-						marginLeft: 20,
-						marginRight: 20,
-						minWidth: 300,
-						backgroundColor: "#fff",
-						borderRadius: 7,
-						borderWidth: 2,
-						borderColor: "#000",
-						alignItems: "center"
-					}}
-					onChangeText={text => setLastName({ text })}
-					value={lastName}
-				/>
 			</Row>
 			<Row />
 			<Row>
 				<Button
 					onPress={() => {
-						Actions.bookingType();
+						Actions.home();
 					}}
 					title={register.submit}
 				/>

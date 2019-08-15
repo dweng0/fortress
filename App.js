@@ -6,6 +6,7 @@ import OutterWrapper from "./src/components/wrapper";
 import Row from "./src/components/row";
 import service from './src/service';
 import Register from './src/pages/register';
+import SurgerySelect from './src/pages/registersurgery';
 import Login from './src/pages/login';
 import Home from './src/pages/home';
 import BookingType from './src/pages/bookingtype';
@@ -37,11 +38,13 @@ export default function App() {
 
     if(fontLoaded)
     {
-		//move login to top when finished
+		//move login to top when finished //surgerySelect
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
-                <Scene key="register" component={Register} service={service}/>
+                <Scene key="surgerySelect"component={SurgerySelect} service={service}/>
+                    <Scene key="register" component={Register} service={service}/>
+                    <Scene key="surgerySelect"component={SurgerySelect} service={service}/>
                     <Scene key="login" component={Login} hideNavBar={true}/>
                     <Scene key="nonemergency" component={NonEmergency}/>
                     <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
