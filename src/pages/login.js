@@ -136,12 +136,7 @@ export default props => {
                                 {errorMessage}
                             </ShakingText>
                             {maybeShowFingerPrintScan()}
-                            <Button
-                                onPress={() => {
-
-                                    //Actions.passcodeLogin()
-                                }}
-                                title={loginContent.usePasscode} />
+                            <Button onPress={() => {Actions.emailpassword() }} title={loginContent.usePasscode} />
                         </View>
                     </Row>
                     <Row>

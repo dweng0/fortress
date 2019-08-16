@@ -16,6 +16,7 @@ import Schedule from './src/pages/schedule';
 import NavBar from './src/components/navbar';
 import PassCode from "./src/pages/passcodelogin";
 import ScheduleDetail from "./src/pages/scheduledetails";
+import EmailPassword from './src/pages/emailandpassword';
 
 export default function App() {
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -38,11 +39,12 @@ export default function App() {
 
     if(fontLoaded)
     {
-		//move login to top when finished //surgerySelect
+
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
                     <Scene key="login" component={Login} hideNavBar={true} firebase={service}/>
+                    <Scene key="emailpassword" component={EmailPassword} hideNavBar={true} firebase={service}/>
                     <Scene key="register" component={Register} hideNavBar={true} service={service}/>
                     <Scene key="surgerySelect"component={SurgerySelect} hideNavBar={true} service={service}/>
                     <Scene key="nonemergency" component={NonEmergency}/>
