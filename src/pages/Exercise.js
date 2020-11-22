@@ -1,0 +1,40 @@
+import React from "react";
+import { Image } from "react-native";
+import * as Animatable from "react-native-animatable";
+import OutterWrapper from "../components/wrapper";
+import Header from "../components/header";
+import Row from "../components/row";
+import Button from "../components/button";
+import { Actions } from "react-native-router-flux";
+import { homeContent } from "../international";
+
+export default function Exercise(props) {
+	return (
+		<OutterWrapper>
+			<Row>
+				<Header title="Box By Numbers" description="Get your groove on" />
+			</Row>
+			<Row>
+				<Animatable.View
+					animation="fadeInDown"
+                    iterationCount={1}
+                    delay={200}
+					style={{
+						justifyContent: "center",
+						alignItems: "center",
+						textAlign: "center"
+					}}
+				>
+					<Image
+						source={require("../../assets/images/icons/doctor.png")}
+						style={{ width: 100, height: 100 }}
+					/>
+				</Animatable.View>
+			</Row>
+			<Row />
+			<Row>
+			
+			</Row>
+		</OutterWrapper>
+	);
+}

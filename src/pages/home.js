@@ -37,7 +37,7 @@ export default function Home() {
 					onPress={() => {
 						Actions.bookingType();
 					}}
-					title={homeContent.bookAppointment}
+					title={homeContent.exercise}
 				/>
 				<Button onPress={
                     () => {

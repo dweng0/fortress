@@ -4,19 +4,10 @@ import * as Font from 'expo-font';
 import { Router, Stack, Scene } from 'react-native-router-flux';
 import OutterWrapper from "./src/components/wrapper";
 import Row from "./src/components/row";
-import service from './src/service';
-import Register from './src/pages/register';
-import SurgerySelect from './src/pages/registersurgery';
-import Login from './src/pages/login';
-import Home from './src/pages/home';
-import BookingType from './src/pages/bookingtype';
-import Emergency from './src/pages/emergency';
-import NonEmergency from './src/pages/nonemergency';
-import Schedule from './src/pages/schedule';
-import NavBar from './src/components/navbar';
-import PassCode from "./src/pages/passcodelogin";
-import ScheduleDetail from "./src/pages/scheduledetails";
-import EmailPassword from './src/pages/emailandpassword';
+
+import Home from './src/pages/Home';
+import Settings from './src/pages/Settings';
+import Exercise from './src/pages/Exercise';
 
 export default function App() {
     const [fontLoaded, setFontLoaded] = useState(false);
@@ -43,17 +34,9 @@ export default function App() {
         return (
             <Router  navBar = {NavBar}>
                 <Stack key="root">
-                    <Scene key="login" component={Login} hideNavBar={true} firebase={service}/>
-                    <Scene key="emailpassword" component={EmailPassword} hideNavBar={true} firebase={service}/>
-                    <Scene key="register" component={Register} hideNavBar={true} service={service}/>
-                    <Scene key="surgerySelect"component={SurgerySelect} hideNavBar={true} service={service}/>
-                    <Scene key="nonemergency" component={NonEmergency}/>
-                    <Scene key="passcodeLogin" component={PassCode} hideNavBar={true}/>
-				    <Scene key="home" component={Home}  hideNavBar={true}/>
-					<Scene key="bookingType" component={BookingType}/>
-					<Scene key="emergency" component={Emergency}/>
-                    <Scene key="schedule" component={Schedule}/>
-                    <Scene key="scheduleDetail" component={ScheduleDetail}/>
+                    <Scene key="index" component={Home} hideNavBar={true}/>
+                    <Scene key="settings" component={Settings} hideNavBar={true}/>
+                    <Scene key="exercise" component={Exercise} hideNavBar={true}/>
                 </Stack>
             </Router>
         );

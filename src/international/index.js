@@ -24,9 +24,13 @@ const { t } = useTranslation();
 
 */
 export const homeContent = {
-	bookAppointment: 'Book',
-	showBookings: 'My Bookings'
+	quickstart: 'Quick Start',
+	settings: 'Settings'
 };
+
+export const exercise = {
+
+}
 
 export const loginContent = {
 	title: 'App Name',
