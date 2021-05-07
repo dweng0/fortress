@@ -29,7 +29,7 @@
     "react-native-shaking-text": "^0.1.0",
     "react-native-web": "^0.11.4",
     "styled-components": "^4.3.2",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.1.1",
